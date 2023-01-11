@@ -43,20 +43,18 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0'}
 " https://github.com/stevearc/dressing.nvim
 Plug 'stevearc/dressing.nvim'
-" https://github.com/rcarriga/nvim-notify
-Plug 'rcarriga/nvim-notify'
 " https://github.com/antoinemadec/FixCursorHold.nvim
 Plug 'antoinemadec/FixCursorHold.nvim'
 " https://github.com/j-hui/fidget.nvim
 Plug 'j-hui/fidget.nvim'
-" https://github.com/karb94/neoscroll.nvim
-Plug 'karb94/neoscroll.nvim'
 " https://github.com/Pocco81/true-zen.nvim
 Plug 'Pocco81/true-zen.nvim'
 " https://github.com/akinsho/toggleterm.nvim
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 " https://github.com/tamton-aquib/staline.nvim
 Plug 'tamton-aquib/staline.nvim'
+" https://github.com/simrat39/rust-tools.nvim
+Plug 'simrat39/rust-tools.nvim'
 " https://github.com/simrat39/rust-tools.nvim
 " Plug 'simrat39/rust-tools.nvim'
 " Themes
@@ -94,8 +92,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-g:spotify_show_status = 1
-
 " Allow for mouse interaction in all modes
 set mouse=a
 
@@ -105,7 +101,7 @@ nnoremap <silent> <Space>ca     :lua vim.lsp.buf.code_action()             <CR>
 "                  Ctrl+Space      
 nnoremap <silent> <C-Space>     :lua vim.lsp.buf.hover()                   <CR>
 "                  Space+fm
-nnoremap <silent> <Space>fm     :lua vim.lsp.buf.formatting_sync()         <CR>
+nnoremap <silent> <Space>fm     :lua vim.lsp.buf.format()         <CR>
 "                  Space+def
 nnoremap <silent> <Space>def    :lua vim.lsp.buf.definition()              <CR>
 "                  Ctrl+S
@@ -174,26 +170,63 @@ set number
 highlight Normal guibg='#0A0A0A' guifg=White
 
 lua << EOF
--- Function for printing LWCS prefix messages.
-function prt(msg, category)
-    require("notify")(msg, category, { title = "LWNV" })
-end
-
-prt("Loading configuration...", "warn")
 require("cmp-conf")
 require("treesitter-conf")
 require("devicons-conf")
 require("lspconfig").rust_analyzer.setup{}
 require("lsp-signature-conf")
 require("staline-conf")
-require("scroll-conf")
 require("fidget").setup{}
 require("impatient")
 require("nvim-autopairs").setup{}
 require("true-zen").setup{}
 require("nvim-tree").setup{}
 require("toggleterm-conf")
-prt("Initialized everything!", "info")
+
+local opts = {
+  -- rust-tools options
+  tools = {
+    autoSetHints = true,
+    hover_with_actions = true,
+    inlay_hints = {
+      show_parameter_hints = true,
+      parameter_hints_prefix = "",
+      other_hints_prefix = "",
+      },
+    },
+
+  -- all the opts to send to nvim-lspconfig
+  -- these override the defaults set by rust-tools.nvim
+  -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+  -- https://rust-analyzer.github.io/manual.html#features
+  server = {
+    settings = {
+      ["rust-analyzer"] = {
+        assist = {
+          importEnforceGranularity = true,
+          importPrefix = "crate"
+          },
+        cargo = {
+          allFeatures = true
+          },
+        checkOnSave = {
+          -- default: `cargo check`
+          -- clippy is better at giving in-depth tips though
+          command = "clippy"
+          },
+        },
+        inlayHints = {
+          lifetimeElisionHints = {
+            enable = true,
+            useParameterNames = true
+          },
+
+          locationLinks = false
+        },
+      }
+    },
+}
+--require('rust-tools').setup(opts)
 EOF
 
 " Cursor Hold Update Time
@@ -204,8 +237,8 @@ set clipboard+=unnamedplus
 
 " OneDark Color Overrides
 let g:onedark_color_overrides = {
-\ "background":  {"gui": "#0B0B0B", "cterm": "235", "cterm16": "0" },
-\ "menu_grey":   {"gui": "#121212", "cterm": "235", "cterm16": "0" },
+\ "background":  {"gui": "#000B0B0B", "cterm": "235", "cterm16": "0" },
+\ "menu_grey":   {"gui": "#00121212", "cterm": "235", "cterm16": "0" },
 \ "cursor_grey": {"gui": "#121212", "cterm": "235", "cterm16": "0" }
 \}
 

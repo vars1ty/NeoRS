@@ -8,7 +8,7 @@ override = {
     icon = "",
     color = "#428850",
     cterm_color = "65",
-    name = "Zsh"
+    name = "ZSH"
   }
  };
  -- globally enable default icons (default to false)
