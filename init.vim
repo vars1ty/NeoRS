@@ -213,20 +213,18 @@ local opts = {
           -- default: `cargo check`
           -- clippy is better at giving in-depth tips though
           command = "clippy"
-          },
+          }
         },
         inlayHints = {
           lifetimeElisionHints = {
             enable = true,
             useParameterNames = true
-          },
-
-          locationLinks = false
-        },
+          }
+        }
       }
-    },
+    }
 }
---require('rust-tools').setup(opts)
+require("rust-tools").setup(opts)
 EOF
 
 " Cursor Hold Update Time
