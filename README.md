@@ -5,17 +5,17 @@
 # NeoRS
 Personal NeoVim configuration for Rust Development.
 ## Features
-- LSP;
-- ToggleTerm;
-- Beginner-friendly keybindings;
-- A nice, dark color-scheme for your eyes;
-- Hierarchy/NvimTree;
-- Smooth scrolling in Inspect Mode;
-- LSP Info on the right bottom corner of your screen;
-- Telescope;
+- Rust LSP already configured and ready-to-go
+- ToggleTerm
+- Beginner-friendly keybindings
+- A nice, dark color-scheme for your eyes
+- Hierarchy/NvimTree
+- Smooth scrolling in Inspect Mode
+- LSP Info on the right bottom corner of your screen
+- Telescope
 - Tabs (with mouse support)
 
-You may also make it compatible with C-Sharp to an extent by swapping the set LSP from `rust-analyzer`, to `csharp-ls`.
+You may also make it compatible with other languages pretty easily with this config.
 ## Installation
 1. Backup your current NeoVim config (if any)
 2. `cd ~/.config`
