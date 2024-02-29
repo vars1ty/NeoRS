@@ -5,10 +5,10 @@ require('staline').setup {
         left_separator  = "",
         right_separator = "",
         full_path       = false,
-        line_column     = "[%l/%L] :%c 並%p%% ", -- `:h stl` to see all flags.
+        line_column     = "[%l/%L] :%c %p%% ", -- `:h stl` to see all flags.
 
         fg              = "#000000",  -- Foreground text color.
-        bg              = "#121212",     -- Default background is transparent.
+        bg              = "#11111b",     -- Default background is transparent.
         inactive_color  = "#303030",
         inactive_bgcolor = "none",
         true_colors     = false,      -- true lsp colors.
@@ -21,16 +21,16 @@ require('staline').setup {
         null_ls_symbol = "",          -- A symbol to indicate that a source is coming from null-ls
     },
     mode_colors = {
-        n = "#2bbb4f",
-        i = "#986fec",
-        c = "#e27d60",
-        v = "#4799eb",   -- etc..
+        n = "#a6e3a1",
+        i = "#cba6f7",
+        c = "#fab387",
+        v = "#74c7ec",   -- etc..
     },
     mode_icons = {
-        n = " ",
-        i = " ",
+        n = " ",
+        i = " ",
         c = " ",
-        v = " ",   -- etc..
+        v = " ",   -- etc..
     },
     sections = {
         left = { '- ', '-mode', 'left_sep_double', ' ', 'branch' },
@@ -42,9 +42,9 @@ require('staline').setup {
         packer = { 'Packer',' ' },        -- etc
     },
     lsp_symbols = {
-        Error=" ",
-        Info=" ",
-        Warn=" ",
+        Error=" ",
+        Info=" ",
+        Warn=" ",
         Hint="",
     },
 }
