@@ -27,8 +27,6 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.3' }
 Plug 'hrsh7th/cmp-cmdline'
 " https://github.com/kyazdani42/nvim-web-devicons/
 Plug 'kyazdani42/nvim-web-devicons/'
-" https://github.com/andweeb/presence.nvim
-Plug 'andweeb/presence.nvim'
 " https://github.com/lewis6991/impatient.nvim
 Plug 'lewis6991/impatient.nvim'
 " https://github.com/kyazdani42/nvim-tree.lua
@@ -126,11 +124,6 @@ autocmd CursorHoldI *  :lua vim.lsp.buf.hover()
 " Makes `d` and `dd` actually delete the line, rather than cutting it.
 nnoremap d "_d
 vnoremap d "_d
-
-" Neovide
-" Change the refresh-rate and transparency to your liking.
-let g:neovide_refresh_rate=144
-let g:neovide_transparency=0.85
 
 " Font to use
 set guifont=Operator\ Mono:h11
